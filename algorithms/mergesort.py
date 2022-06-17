@@ -3,25 +3,25 @@
 import random
 
 nums = [random.randint(0, 100) for i in range(100)]
-nums2 = [random.randint(0, 100) for i in range(100)]
-print(nums)
-print(nums2)
-def merge(arr1, arr2):
-  result = [0]*(len(arr1) + len(arr2))
-  m,n = 0,0
-  for i in range(len(arr1) + len(arr2)):
-    if n+1 == len(arr2) or arr1[m] < arr2[n]:
-      result[i] = arr1[m]
-      m+=1
-    elif m+1 == len(arr1) or arr2[n] < arr1[m]:
-      result[i] = arr2[n]
-      n+=1
-    elif arr2[n] == arr2[m]:
-      result[i] = arr1[m]
-      m+=1
-  return result
-    
-print(merge(sorted(nums), sorted(nums2)))    
+nums2 = [random.randint(0, 100) for i in range(10)]
 
-#def mergesort(nums):
-  
+
+
+def merge(arr1, arr2):
+  result = []
+  while len(arr1) or len(arr2):
+    if len(arr1) and len(arr2):
+      result.append(arr1.pop(0)) if arr1[0] <= arr2[0] else result.append(arr2.pop(0))
+    elif len(arr1):
+      result.append(arr1.pop(0))
+    elif len(arr2):
+      result.append(arr2.pop(0))
+  return result 
+
+def mergeSort(arr):
+  if len(arr) <= 1:
+    return arr
+
+  return merge(mergeSort(arr[:len(arr)//2]), mergeSort(arr[len(arr)//2:]))
+
+print(sorted(nums) == mergeSort(nums))

@@ -15,4 +15,6 @@ def mul(x, y):
   s3 = mul(a+b, c+d) - s2 - s1
   print(s1, s2, s3)
   return (10**n * s1) + (s3 * 10**(n/2)) + s2 
-print(mul(1234, 5678))
+
+print(mul(1234, 1342))
+
